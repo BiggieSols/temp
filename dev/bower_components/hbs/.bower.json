@@ -1,0 +1,22 @@
+{
+  "name": "hbs",
+  "version": "0.4.2-mr",
+  "main": "./hbs.js",
+  "dependencies": {
+    "handlebars": "git@github.com:MassRelevance/handlebars.git#1.0.0-rc.3"
+  },
+  "ignore": [
+    "demo*",
+    "r.js"
+  ],
+  "homepage": "https://github.com/git@github.com:MassRelevance/require-handlebars-plugin",
+  "_release": "0.4.2-mr",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.4.2-mr",
+    "commit": "ad5ea844904765565335f3349cfa90c0f0eee649"
+  },
+  "_source": "git@github.com:MassRelevance/require-handlebars-plugin.git",
+  "_target": "0.4.2-mr",
+  "_originalSource": "git@github.com:MassRelevance/require-handlebars-plugin.git"
+}

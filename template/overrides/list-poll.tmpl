@@ -1,0 +1,5 @@
+<ul class="poll-list">
+<% _.each(collection.models, function(option) { %>
+  <%= subview('poll-item', option) %>
+<% }); %>
+</ul>

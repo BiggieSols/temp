@@ -1,0 +1,16 @@
+{
+  "name": "handlebars",
+  "version": "1.0.0-rc.3",
+  "main": "./Handlebars.js",
+  "dependencies": {},
+  "homepage": "https://github.com/git@github.com:MassRelevance/handlebars",
+  "_release": "1.0.0-rc.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.0-rc.3",
+    "commit": "422180fecdc45d51379f451314c13201f002b2c2"
+  },
+  "_source": "git@github.com:MassRelevance/handlebars.git",
+  "_target": "1.0.0-rc.3",
+  "_originalSource": "git@github.com:MassRelevance/handlebars.git"
+}

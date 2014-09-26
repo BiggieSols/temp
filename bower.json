@@ -1,0 +1,11 @@
+{
+  "name": "pcmax-tug-of-war",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "almond": "~0.2.9",
+    "requirejs": "~2.1.10",
+    "hbs": "git@github.com:MassRelevance/require-handlebars-plugin.git#0.4.2-mr"
+  }
+}
+

@@ -1,0 +1,269 @@
+{
+  "description": "",
+  "tags": [
+    "_Customer-Templates/My Templates"
+  ],
+  "groups": [
+    "MR Custom Projects"
+  ],
+  "data": {
+    "poll_stream" : {
+      "name": "poll-stream-1",
+      "type": "Stream",
+      "value": "",
+      "ref": "variables.body.overrideStream",
+      "autoconfig": {
+          "default_state": "approve",
+          "features": [
+            "source_facebook",
+            "manage_topics"
+          ],
+          "enabled_sources": {
+            "twitter": "{{components.poll-content.variables.twitter}}",
+            "facebook": "{{components.poll-content.variables.facebook}}"
+          },
+          "sources": {
+            "twitter": {
+              "keywords": [
+                "{{components.poll-content.variables.poll_options[*].twitterSettings.hashtags}}"
+              ]
+            },
+            "facebook": {
+              "keywords": [
+                "{{components.poll-content.variables.poll_options[*].facebookSettings.storyTitle}}"
+              ],
+              "pages": [
+                {"name": "{{variables.facebookPage}}",
+                 "content": "feed"}
+              ]
+            }
+          },
+          "rules": {},
+          "topics": [
+            {
+              "topic": ["{{components.poll-content.variables.poll_options[*].twitterSettings.hashtags}}"],
+              "network": "twitter"
+            },
+            {
+              "topic": ["{{components.poll-content.variables.poll_options[*].facebookSettings.storyTitle}}"],
+              "network": "facebook"
+            }
+          ]
+      },
+      "apply_to": ["components.poll-content.variables.stream_name"]
+    }
+  },
+  "variables": {
+    "temp": "val1",
+    "header": {
+      "headerText": "Foodie Faceoff",
+      "questionText": "Do you love beets?",
+      "voteLabel": "Vote for results!"
+    },
+    "@leftOptionColor": "#ffbb08",
+    "@rightOptionColor": "#002e68",
+    "facebookPage": "",
+    "body": {
+      "overrideStream": ""
+    }
+  },
+  "layout": {
+    "tug": {
+      "display_name": "Tug of War",
+      "type": "Category",
+      "contents": {
+
+        "headerText": {
+          "type": "Text",
+          "display_name": "Header",
+          "ref": "variables.header.headerText"
+        },
+
+        "questionText": {
+          "type": "Text",
+          "display_name": "What question would you like to ask?",
+          "ref": "variables.header.questionText"
+        },
+
+        "voteLabelText": {
+          "type": "Text",
+          "display_name": "Call to action text",
+          "ref": "variables.header.voteLabel"
+        },
+
+        "networks": {
+          "display_name": "",
+          "type": "Category",
+          "contents": {
+            "facebookPage": {
+              "display_name": "Facebook Page",
+              "type": "Text",
+              "ref": "variables.facebookPage",
+              "apply_to": [
+                "components.poll-content.variables.poll_options[*].facebookSettings.page"
+              ],
+              "display_options": {
+                "placeholder": "https://www.facebook.com/your_page_name"
+              }
+            }
+          }
+        },
+
+        "options": {
+          "display_name": "",
+          "description": "Poll Answers",
+          "type": "Category",
+          "contents": {
+            "pollOptions": {
+              "display_name": "",
+              "type": "List",
+              "min": 2,
+              "max": 2,
+              "ref": "components.poll-content.variables.poll_options",
+              "contents": [
+                {
+                  "display_name": "Poll Answer",
+                  "type": "Category",
+                  "display_ref": "option_text",
+                  "display_options": {
+                    "display_type": "modal"
+                  },
+                  "contents": {
+                    "option_text": {
+                      "type": "Text",
+                      "ref": "option_text",
+                      "display_name": "Poll Answer Display Name"
+                    },
+                    "option_hashtag": {
+                      "type": "Text",
+                      "ref": "twitterSettings.hashtags",
+                      "display_name": "Hashtag (used to gather votes)",
+                      "apply_to": [
+                        "components.poll-content.variables.poll_options[.].facebookSettings.storyTitle"
+                      ]
+                    },
+                    "twitterIntent": {
+                      "type": "TwitterIntent",
+                      "display_name": "Twitter Settings",
+                      "contents": {
+                        "hashtags": {
+                          "ref": "twitterSettings.hashtags"
+                        },
+                        "text": {
+                          "ref": "twitterSettings.text"
+                        },
+                        "users": {
+                          "ref": "twitterSettings.users"
+                        },
+                        "url": {
+                          "ref": "twitterSettings.url"
+                        }
+                      }
+                    },
+                    "facebookIntent": {
+                      "type": "FacebookStory",
+                      "display_name": "Facebook Settings",
+                      "contents": {
+                        "title": {
+                          "ref": "facebookSettings.storyTitle"
+                        },
+                        "title_link": {
+                          "ref": "facebookSettings.storyURL"
+                        },
+                        "subtitle": {
+                          "ref": "facebookSettings.storySubtitle"
+                        },
+                        "caption": {
+                          "ref": "facebookSettings.storyDescription"
+                        },
+                        "image": {
+                          "ref": "facebookSettings.storyImage"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+
+            "advanced": {
+              "name": "Advanced",
+              "type": "Category",
+              "contents": {
+                "stream": {
+                  "type": "StreamSelect",
+                  "display_options": {
+                    "allow_blank": true
+                  },
+                  "ref": "variables.body.overrideStream",
+                  "display_name": "Override Stream"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "poll-content": {
+      "inherit": "poll-1",
+      "variables": {
+        "displayPostVoteMessage": false,
+        "showResultsPrior": false,
+        "socialButtonStyle": "color",
+        "stream_name": "TomTest04632270/p3-tug-stream",
+        "twitter": true,
+        "facebook": true,
+        "poll_options": [
+          {
+            "option_text": "Summer",
+            "image": "http://s3.amazonaws.com/massrel-library-assets/production/270/summer.jpg?1391649687",
+            "video": {
+              "url": "https://www.youtube.com/watch?v=0eSFdddaRnk",
+              "embed_html": "",
+              "tagline": "foo"
+            },
+            "facebookSettings": {
+              "page": "",
+              "storyTitle": "#Summer",
+              "storyDescription": "Pick your favorite time of year",
+              "storySubtitle": "I voted for the best season",
+              "storyURL": "",
+              "storyImage": "http://s3.amazonaws.com/massrel-library-assets/production/270/summer.jpg?1391649687"
+            },
+            "twitterSettings": {
+              "hashtags": "#Summer",
+              "text": "I voted for",
+              "users": "",
+              "url": ""
+            }
+          },
+          {
+            "option_text": "Winter",
+            "image": "http://s3.amazonaws.com/massrel-library-assets/production/271/winter.jpg?1391649710",
+            "video": {
+              "url": "https://www.youtube.com/watch?v=LbzEa_juegs",
+              "embed_html": "",
+              "tagline": "foo"
+            },
+            "facebookSettings": {
+              "page": "",
+              "storyTitle": "#Winter",
+              "storyDescription": "Pick your favorite time of year",
+              "storySubtitle": "I voted for the best season",
+              "storyURL": "",
+              "storyImage": "http://s3.amazonaws.com/massrel-library-assets/production/271/winter.jpg?1391649710"
+            },
+            "twitterSettings": {
+              "hashtags": "#Winter",
+              "text": "I voted for",
+              "users": "",
+              "url": ""
+            }
+          }
+        ]
+      }
+    }
+  }
+}

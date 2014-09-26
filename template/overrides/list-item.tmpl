@@ -1,0 +1,16 @@
+<div class="tow-option">
+	<div class="tow-option-btn-wrap">
+		<div class="tow-option-btn">+</div>
+		<div class="tow-vote-btns" data-option-label="<%- option_text %>">
+			<div class="btn-clipper">
+			<% if (twitterSettings) { %>
+				<%= subview('vote-button', twitterModel()) %>
+			<% } %>
+			<% if (facebookSettings) { %>
+				<%= subview('facebook-vote-button', facebookModel()) %>
+			<% } %>
+			</div>
+		</div>
+	</div>
+	<div class="tow-option-label" data-action="select"><%- option_text %></div>
+</div>
